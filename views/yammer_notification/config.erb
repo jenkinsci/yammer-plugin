@@ -31,7 +31,7 @@
          f.optionalBlock :title => 'Send success notifications',
                          :field => :send_success_notifications,
                          :inline => true do
-           f.entry :title => 'Success Message',
+           f.entry :title => 'Message',
                    :field => :success_message,
                    :description => 'The message to post when the build finishes with a status of SUCCESS.' do
              f.textarea :clazz => 'required', :default => '${JOB_NAME} #${BUILD_NUMBER} SUCCESS'
@@ -39,15 +39,15 @@
 
            f.entry :title => 'Group ID',
                    :field => :success_group_id,
-                   :description => 'The Yammer group ID to post to.' do
-             f.textbox :clazz => 'required positive-number'
+                   :description => 'The Yammer group ID to post the success notification to.' do
+             f.textbox :clazz => 'required positive-number', :default => '${YAMMER_SUCCESS_GROUP_ID}'
            end
          end
 
          f.optionalBlock :title => 'Send failure notifications',
                          :field => :send_failure_notifications,
                          :inline => true do
-           f.entry :title => 'Failure Message',
+           f.entry :title => 'Message',
                    :field => :failure_message,
                    :description => 'The message to post when the build finishes with a status OTHER THAN SUCCESS.' do
              f.textarea :clazz => 'required', :default => '${JOB_NAME} #${BUILD_NUMBER} FAILURE'
@@ -55,8 +55,8 @@
 
            f.entry :title => 'Group ID',
                    :field => :failure_group_id,
-                   :description => 'The Yammer group ID to post to.' do
-             f.textbox :clazz => 'required positive-number'
+                   :description => 'The Yammer group ID to post the failure notification to.' do
+             f.textbox :clazz => 'required positive-number', :default => '${YAMMER_FAILURE_GROUP_ID}'
            end
          end
 
