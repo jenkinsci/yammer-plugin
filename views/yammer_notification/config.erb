@@ -1,47 +1,66 @@
 <%
    f = taglib("/lib/form")
    f.block do
-     f.entry(:title => 'Consumer Key',
-             :field => 'consumer_key',
-             :description => 'Consumer Key provided by Yammer.') do
-       f.textbox
-     end
+%>
+    <table style="margin-left: 30px;">
+      <%
+         f.entry :title => 'Client Key',
+                 :field => :client_key,
+                 :description => 'Client Key provided by Yammer.' do
+           f.textbox :clazz => 'required', :default => '${YAMMER_CLIENT_KEY}'
+         end
 
-     f.entry(:title => 'Consumer Secret',
-             :field => 'consumer_secret',
-             :description => 'Consumer Secret provided by Yammer.') do
-       f.textbox
-     end
+         f.entry :title => 'Client Secret',
+                 :field => :client_secret,
+                 :description => 'Client Secret provided by Yammer.' do
+           f.textbox :clazz => 'required', :default => '${YAMMER_CLIENT_SECRET}'
+         end
 
-     f.entry(:title => 'OAuth Key',
-             :field => 'oauth_key',
-             :description => 'OAuth Key of Yammer user to post from.') do
-       f.textbox
-     end
+         f.entry :title => 'Token Key',
+                 :field => :token_key,
+                 :description => 'Token Key of the Yammer user to post from.' do
+           f.textbox :clazz => 'required', :default => '${YAMMER_TOKEN_KEY}'
+         end
 
-     f.entry(:title => 'OAuth Secret',
-             :field => 'oauth_secret',
-             :description => 'OAuth Secret of Yammer user to post from.') do
-       f.textbox
-     end
+         f.entry :title => 'Token Secret',
+                 :field => :token_secret,
+                 :description => 'Token Secret of the Yammer user to post from.' do
+           f.textbox :clazz => 'required', :default => '${YAMMER_TOKEN_SECRET}'
+         end
 
-     f.entry(:title => 'Group ID',
-             :field => 'group_id',
-             :description => 'The Yammer group ID (feed ID) to post to.') do
-       f.textbox
-     end
+         f.optionalBlock :title => 'Send success notifications',
+                         :field => :send_success_notifications,
+                         :inline => true do
+           f.entry :title => 'Success Message',
+                   :field => :success_message,
+                   :description => 'The message to post when the build finishes with a status of SUCCESS.' do
+             f.textarea :clazz => 'required', :default => '${JOB_NAME} #${BUILD_NUMBER} SUCCESS'
+           end
 
-     f.entry(:title => 'Success Message',
-             :field => 'success_message',
-             :description => 'A custom message to post when the build finishes with a status SUCCESS.') do
-       f.textbox
-     end
+           f.entry :title => 'Group ID',
+                   :field => :success_group_id,
+                   :description => 'The Yammer group ID to post to.' do
+             f.textbox :clazz => 'required positive-number'
+           end
+         end
 
-     f.entry(:title => 'Unsuccessful Message',
-             :field => 'unsuccessful_message',
-             :description => 'A custom message to post when the build finishes with a status other than SUCCESS.') do
-       f.textbox
-     end
+         f.optionalBlock :title => 'Send failure notifications',
+                         :field => :send_failure_notifications,
+                         :inline => true do
+           f.entry :title => 'Failure Message',
+                   :field => :failure_message,
+                   :description => 'The message to post when the build finishes with a status OTHER THAN SUCCESS.' do
+             f.textarea :clazz => 'required', :default => '${JOB_NAME} #${BUILD_NUMBER} FAILURE'
+           end
 
+           f.entry :title => 'Group ID',
+                   :field => :failure_group_id,
+                   :description => 'The Yammer group ID to post to.' do
+             f.textbox :clazz => 'required positive-number'
+           end
+         end
+
+      %></table>
+<%
    end
 %>

@@ -1,5 +1,6 @@
 .idea
 pkg
+test
 work
 auth.yaml
 Gemfile.lock

@@ -2,7 +2,7 @@ Jenkins::Plugin::Specification.new do |plugin|
 
   plugin.name = 'yammer'
   plugin.display_name = 'Yammer Plugin'
-  plugin.version = '0.0.2'
+  plugin.version = '0.1.0'
   plugin.description = 'Sends build notifications to Yammer.'
 
   # You should create a wiki-page for your plugin when you publish it, see
@@ -18,5 +18,6 @@ Jenkins::Plugin::Specification.new do |plugin|
 
   # This is a required dependency for every ruby plugin.
   plugin.depends_on 'ruby-runtime', '0.10'
+  plugin.depends_on 'token-macro', '1.5.1'
 
 end
