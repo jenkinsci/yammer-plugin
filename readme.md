@@ -20,13 +20,27 @@ Install the plugin from the Jenkins Plugin Manager. It should be listed as __Yam
 4. Upload the .hpi file into Jenkins from Plugin Manager > Advanced.
 5. Restart Jenkins.
 
-## Obtain an OAuth token from Yammer
+## Obtain an OAuth Token from Yammer
 
-The plugin requires 4 OAuth parameters: Client Key, Client Secret, Token Key, Token Secret.
+The Yammer API uses OAuth for user authentication.
+As a result, the plugin requires 4 OAuth parameters which can be obtained by following the steps below.
+
+### Register a New Application
+
+To obtain a __Client Key__ and a __Client Secret__, [register the plugin as a Yammer application](https://www.yammer.com/client_applications/new).
+
+An example application name could be: Company XYZ Build Notifications.
+
+### Obtain an OAuth Token
+
+To obtain an __OAuth Token__ and an __OAuth Secret__, download and run [get_auth.rb](https://github.com/jenkinsci/yammer-plugin/blob/master/get_auth.rb) using Ruby.
+get_auth.rb is a helper script that will request your Client Key and Secret, and walk through the process of obtaining an OAuth Token and Secret.
+
+When prompted to authorise the application, ensure Yammer is logged in with the user you want the notifications to be sent __from__.
+
+Consider creating Yammer user representing Jenkins that will act as the source of all Yammer notifications from Jenkins.
 
 See [Yammer API Documentation for OAuth](https://developer.yammer.com/api/#oauth) for more information.
-
-TODO: Expand this section. To have this section expanded sooner, please contact: matthew-github@matthewriley.name.
 
 ## Enable Yammer notifications for a job
 
@@ -35,7 +49,7 @@ In the job configuration, under Post-build Actions, select __Yammer Notification
 ![Enable Yammer Notifications for a job](https://github.com/mattriley/yammer-plugin-for-jenkins/raw/master/readme/enable_yammer_notifications_for_job.png)
 
 The OAuth parameters default to environment variables in case the same parameters are used across many jobs.
-For example, you might create a user in Yammer representing Jenkins that will act as the source of all Yammer notifications from Jenkins.
+For example, you might create a Yammer user representing Jenkins that will act as the source of all Yammer notifications from Jenkins.
 
 Global environment variables can be set from Jenkins at Manage Jenkins > Configure System > Global Properties:
 
