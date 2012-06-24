@@ -1,0 +1,28 @@
+require File.expand_path(File.dirname(__FILE__) + '/Rakelib/yammer_plugin_wiki_page')
+
+task :serve do
+  from_plugin_dir { sh 'jpi serve' }
+end
+
+task :snapshot do
+  from_plugin_dir { sh 'jpi release' }
+end
+
+task :release => [:release_to_jenkins_ci, :update_jenkins_ci_wiki]
+
+task :release_to_jenkins_ci do
+  from_plugin_dir { sh 'jpi release --release' }
+end
+
+task :update_jenkins_ci_wiki do
+  username = ENV['JENKINS_USERNAME']
+  password = ENV['JENKINS_PASSWORD']
+  raise 'JENKINS_USERNAME is required.' unless username
+  raise 'JENKINS_PASSWORD is required.' unless password
+  wiki_page = YammerPluginWikiPage.new
+  wiki_page.post username, password
+end
+
+def from_plugin_dir
+  Dir.chdir('plugin') { yield }
+end

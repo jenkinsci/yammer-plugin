@@ -8,7 +8,11 @@ This is an example of a successful build notification sent to the __Build Notifi
 
 ## Installation
 
-The plugin is not currently listed in Jenkins, but is expected to be soon. Until then:
+### Easy install
+
+Install the plugin from the Jenkins Plugin Manager. It should be listed as __Yammer Plugin__ under __Build Notifiers__.
+
+### Manual install
 
 1. Install the ruby-runtime plugin.
 2. Install the [Token Macro Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Token+Macro+Plugin). It may already be installed.
@@ -43,7 +47,20 @@ With the OAuth parameters set, select whether to send success and/or failure not
 
 ![Enable success notifications](https://github.com/mattriley/yammer-plugin-for-jenkins/raw/master/readme/enable_success_notifications.png)
 
-Both success and failure notifications accept a message and a group ID, both of which are required.
+Both success and failure notifications require a message and a group ID. Environment variables are also allowed.
+
 The group ID is the feedId parameter in the group URL:
 
 ![Group ID in URL](https://github.com/mattriley/yammer-plugin-for-jenkins/raw/master/readme/group_id_in_url.png)
+
+Please ensure that the Yammer user associated with the OAuth token has been added to the specified groups,
+otherwise the post will result in a HTTP 403 Unauthorised error.
+
+## Feedback
+
+Thanks for your interest in the Yammer Plugin for Jenkins.
+
+Your feedback is valuable. To provide feedback, [raise an issue](https://github.com/mattriley/yammer-plugin-for-jenkins/issues)
+or send an email to matthew-github@matthewriley.name.
+
+
