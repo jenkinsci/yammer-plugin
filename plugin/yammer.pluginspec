@@ -2,7 +2,7 @@ Jenkins::Plugin::Specification.new do |plugin|
 
   plugin.name = 'yammer'
   plugin.display_name = 'Yammer Plugin'
-  plugin.version = '0.1.0'
+  plugin.version = '1.0.0'
   plugin.description = 'Sends build notifications to Yammer.'
 
   # You should create a wiki-page for your plugin when you publish it, see

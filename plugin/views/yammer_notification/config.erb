@@ -4,28 +4,10 @@
 %>
     <table style="margin-left: 30px;">
       <%
-         f.entry :title => 'Client Key',
-                 :field => :client_key,
-                 :description => 'Client Key provided by Yammer.' do
-           f.textbox :clazz => 'required', :default => '${YAMMER_CLIENT_KEY}'
-         end
-
-         f.entry :title => 'Client Secret',
-                 :field => :client_secret,
-                 :description => 'Client Secret provided by Yammer.' do
-           f.textbox :clazz => 'required', :default => '${YAMMER_CLIENT_SECRET}'
-         end
-
-         f.entry :title => 'Token Key',
-                 :field => :token_key,
-                 :description => 'Token Key of the Yammer user to post from.' do
-           f.textbox :clazz => 'required', :default => '${YAMMER_TOKEN_KEY}'
-         end
-
-         f.entry :title => 'Token Secret',
-                 :field => :token_secret,
-                 :description => 'Token Secret of the Yammer user to post from.' do
-           f.textbox :clazz => 'required', :default => '${YAMMER_TOKEN_SECRET}'
+         f.entry :title => 'Access Token',
+                 :field => :access_token,
+                 :description => 'See <a href="https://wiki.jenkins-ci.org/display/JENKINS/Yammer+Plugin#YammerPlugin-ObtainAnAccessToken" target="_blank">Obtain an Access Token</a> for more information.' do
+           f.textbox :clazz => 'required', :default => '${YAMMER_ACCESS_TOKEN}'
          end
 
          f.optionalBlock :title => 'Send success notifications',
@@ -37,10 +19,10 @@
              f.textarea :clazz => 'required', :default => '${JOB_NAME} #${BUILD_NUMBER} SUCCESS'
            end
 
-           f.entry :title => 'Group ID',
-                   :field => :success_group_id,
-                   :description => 'The Yammer group ID to post the success notification to.' do
-             f.textbox :clazz => 'required positive-number', :default => '${YAMMER_SUCCESS_GROUP_ID}'
+           f.entry :title => 'Group Name',
+                   :field => :success_group_name,
+                   :description => 'The name of the group to post the success notification to. Case insensitive.' do
+             f.textbox :clazz => 'required', :default => '${YAMMER_SUCCESS_GROUP_NAME}'
            end
          end
 
@@ -53,10 +35,10 @@
              f.textarea :clazz => 'required', :default => '${JOB_NAME} #${BUILD_NUMBER} FAILURE'
            end
 
-           f.entry :title => 'Group ID',
-                   :field => :failure_group_id,
-                   :description => 'The Yammer group ID to post the failure notification to.' do
-             f.textbox :clazz => 'required positive-number', :default => '${YAMMER_FAILURE_GROUP_ID}'
+           f.entry :title => 'Group Name',
+                   :field => :failure_group_name,
+                   :description => 'The name of the group to post the failure notification to. Case insensitive.' do
+             f.textbox :clazz => 'required', :default => '${YAMMER_FAILURE_GROUP_NAME}'
            end
          end
 

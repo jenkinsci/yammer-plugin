@@ -2,9 +2,9 @@ require_relative 'yammer_build_notification'
 
 class YammerNotification < Jenkins::Tasks::Publisher
 
-  attr_reader :client_key, :client_secret, :token_key, :token_secret,
-              :send_success_notifications, :success_message, :success_group_id,
-              :send_failure_notifications, :failure_message, :failure_group_id
+  attr_reader :access_token,
+              :send_success_notifications, :success_message, :success_group_name,
+              :send_failure_notifications, :failure_message, :failure_group_name
 
   display_name 'Yammer Notification'
 

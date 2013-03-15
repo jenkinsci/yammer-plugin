@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/Rakelib/yammer_plugin_wiki_page')
 
 task :serve do
-  from_plugin_dir { sh 'jpi serve' }
+  from_plugin_dir { sh 'bundle install & jpi serve' }
 end
 
 task :snapshot do

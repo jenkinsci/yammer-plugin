@@ -1,4 +1,4 @@
 source :rubygems
 gem 'jenkins-plugin-runtime', '~> 0.2.0'
-gem 'jruby-openssl', '~> 0.7.7'
-gem 'oauth', '~> 0.4.6'
+gem 'jruby-openssl', '~> 0.8.5'
+gem 'yamwow', '0.1.0'
