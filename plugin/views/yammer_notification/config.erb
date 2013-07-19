@@ -1,48 +1,52 @@
 <%
-   f = taglib("/lib/form")
+   f = taglib '/lib/form'
    f.block do
-%>
-    <table style="margin-left: 30px;">
-      <%
-         f.entry :title => 'Access Token',
-                 :field => :access_token,
-                 :description => 'See <a href="https://wiki.jenkins-ci.org/display/JENKINS/Yammer+Plugin#YammerPlugin-ObtainAnAccessToken" target="_blank">Obtain an Access Token</a> for more information.' do
-           f.textbox :clazz => 'required', :default => '${YAMMER_ACCESS_TOKEN}'
-         end
 
-         f.optionalBlock :title => 'Send success notifications',
-                         :field => :send_success_notifications,
-                         :inline => true do
-           f.entry :title => 'Message',
-                   :field => :success_message,
-                   :description => 'The message to post when the build finishes with a status of SUCCESS.' do
-             f.textarea :clazz => 'required', :default => '${JOB_NAME} #${BUILD_NUMBER} SUCCESS'
-           end
+     f.entry :title => 'Access Token',
+             :field => :access_token,
+             :description => 'See <a href="https://wiki.jenkins-ci.org/display/JENKINS/Yammer+Plugin#YammerPlugin-ObtainAnAccessToken" target="_blank">Obtain an Access Token</a> for more information.' do
+       f.textbox :clazz => 'required', :default => '${YAMMER_ACCESS_TOKEN}'
+     end
 
-           f.entry :title => 'Group Name',
-                   :field => :success_group_name,
-                   :description => 'The name of the group to post the success notification to. Case insensitive.' do
-             f.textbox :clazz => 'required', :default => '${YAMMER_SUCCESS_GROUP_NAME}'
-           end
-         end
+     f.optionalBlock :title => 'Send success notifications',
+                     :field => :send_success_notifications,
+                     :inline => true do
+       f.entry :title => 'Success Message',
+               :field => :success_message,
+               :description => 'The message to post when the build finishes with a status of SUCCESS.' do
+         f.textarea :clazz => 'required', :default => '${JOB_NAME} #${BUILD_NUMBER} SUCCESS'
+       end
 
-         f.optionalBlock :title => 'Send failure notifications',
-                         :field => :send_failure_notifications,
-                         :inline => true do
-           f.entry :title => 'Message',
-                   :field => :failure_message,
-                   :description => 'The message to post when the build finishes with a status OTHER THAN SUCCESS.' do
-             f.textarea :clazz => 'required', :default => '${JOB_NAME} #${BUILD_NUMBER} FAILURE'
-           end
+       f.entry :title => 'Success Group Name',
+               :field => :success_group_name,
+               :description => 'The name of the group to post the success notification to. Case insensitive.' do
+         f.textbox :clazz => 'required', :default => '${YAMMER_SUCCESS_GROUP_NAME}'
+       end
+     end
 
-           f.entry :title => 'Group Name',
-                   :field => :failure_group_name,
-                   :description => 'The name of the group to post the failure notification to. Case insensitive.' do
-             f.textbox :clazz => 'required', :default => '${YAMMER_FAILURE_GROUP_NAME}'
-           end
-         end
+     f.optionalBlock :title => 'Send failure notifications',
+                     :field => :send_failure_notifications,
+                     :inline => true do
+       f.entry :title => 'Failure Message',
+               :field => :failure_message,
+               :description => 'The message to post when the build finishes with a status OTHER THAN SUCCESS.' do
+         f.textarea :clazz => 'required', :default => '${JOB_NAME} #${BUILD_NUMBER} FAILURE'
+       end
 
-      %></table>
-<%
+       f.entry :title => 'Failure Group Name',
+               :field => :failure_group_name,
+               :description => 'The name of the group to post the failure notification to. Case insensitive.' do
+         f.textbox :clazz => 'required', :default => '${YAMMER_FAILURE_GROUP_NAME}'
+       end
+     end
+
+     f.advanced do
+       f.entry :title => 'Config File',
+               :field => :config_file,
+               :description => 'The path of a JSON file containing parameters to merge. Relative to workspace. See <a href="https://wiki.jenkins-ci.org/display/JENKINS/Yammer+Plugin#YammerPlugin-ConfigFile" target="_blank">Config File</a> for more information.' do
+         f.textbox :clazz => 'required', :default => 'yammer.json'
+       end
+     end
+
    end
 %>

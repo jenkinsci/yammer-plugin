@@ -1,6 +1,4 @@
-.idea
-pkg
-test
-work
-auth.yaml
-Gemfile.lock
+.idea/
+pkg/
+temp/
+work/
