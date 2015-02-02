@@ -7,6 +7,7 @@ class YammerNotificationSender
     @build = build
     @listener = listener
     @params = params
+    @yam = Yammer::Client.new(:access_token  => @params.access_token)
   end
 
   def should_send_notification?
@@ -14,7 +15,6 @@ class YammerNotificationSender
   end
 
   def send_notification
-    @yam = Yammer::Client.new(:access_token  => @params.access_token)
     @yam.create_message( body, :group_id => group_id )
   end
 
