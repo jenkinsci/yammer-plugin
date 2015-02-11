@@ -1,5 +1,5 @@
-require 'yam'
-require 'yamwow'
+require 'yammer'
+
 
 class YammerNotificationSender
 
@@ -7,6 +7,7 @@ class YammerNotificationSender
     @build = build
     @listener = listener
     @params = params
+    @yam = Yammer::Client.new(:access_token  => @params.access_token)
   end
 
   def should_send_notification?
@@ -14,8 +15,7 @@ class YammerNotificationSender
   end
 
   def send_notification
-    yam = Yam.new @params.access_token, nil
-    yam.post '/messages.json', body: body, group_id: group_id
+    @yam.create_message( body, :group_id => group_id )
   end
 
   private
@@ -30,11 +30,12 @@ class YammerNotificationSender
 
   def group_id
     group_name = message_info.group
-    puts "Using YamWow! to retrieve ID for group named '#{group_name}'..."
-    f = YamWow::Facade.new @params.access_token
-    r = f.group_with_name group_name
+    #puts "Using YamWow! to retrieve ID for group named '#{group_name}'..."
+    #f = YamWow::Facade.new @params.access_token
+    #r = f.group_with_name group_name
+    r = @yam.autocomplete(:prefix => group_name , :models => 'group:30')
     raise "  Yammer group '#{group_name}' does not exist." unless r.data
-    id = r.data['id']
+    id = r.data['group']['id']
     puts "  ID: #{id}"
     id
   end
