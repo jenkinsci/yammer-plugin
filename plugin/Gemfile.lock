@@ -1,51 +1,17 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
-    bouncy-castle-java (1.5.0147)
-    faraday (0.8.7)
-      multipart-post (~> 1.1)
-    faraday_middleware (0.9.0)
-      faraday (>= 0.7.4, < 0.9)
-    hash_flattener (0.2.0)
-    hash_to_csv (0.1.3)
-      hash_flattener (= 0.2.0)
-    hashie (1.2.0)
-    httpauth (0.2.0)
     jenkins-plugin-runtime (0.2.3)
       json
       slop (~> 3.0.2)
-    jruby-openssl (0.8.8)
-      bouncy-castle-java (>= 1.5.0147)
-    json (1.7.7-java)
-    jwt (0.1.8)
-      multi_json (>= 1.5)
-    multi_json (1.7.7)
-    multipart-post (1.2.0)
-    oauth2 (0.8.1)
-      faraday (~> 0.8)
-      httpauth (~> 0.1)
-      jwt (~> 0.1.4)
-      multi_json (~> 1.0)
-      rack (~> 1.2)
-    rack (1.5.2)
+    json (1.8.3-java)
     slop (3.0.4)
-    yam (0.0.6)
-      faraday (~> 0.8.1)
-      faraday_middleware (~> 0.9.0)
-      hashie (~> 1.2.0)
-      json (~> 1.7.6)
-      multi_json (~> 1.3)
-      oauth2 (~> 0.8.0)
-    yamwow (0.1.6)
-      hash_flattener (~> 0.2.0)
-      hash_to_csv (~> 0.1.0)
-      yam (~> 0.0.6)
 
 PLATFORMS
   java
 
 DEPENDENCIES
   jenkins-plugin-runtime (= 0.2.3)
-  jruby-openssl (= 0.8.8)
-  yam (= 0.0.6)
-  yamwow (= 0.1.6)
+
+BUNDLED WITH
+   1.11.2
