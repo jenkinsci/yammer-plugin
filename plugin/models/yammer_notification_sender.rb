@@ -28,8 +28,12 @@ class YammerNotificationSender
   end
 
   def group_id
-    puts message_info.group
+    return group if  group.to_i.to_s == group
     @yammer_http_client.find_group_id_by_name(message_info.group)
+  end
+  
+  def group
+    message_info.group
   end
 
   def message_info
