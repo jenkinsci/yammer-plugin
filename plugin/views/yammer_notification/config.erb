@@ -19,7 +19,7 @@
 
        f.entry :title => 'Success Group Name',
                :field => :success_group_name,
-               :description => 'The name of the group to post the success notification to. Case insensitive.' do
+               :description => 'The name or id of the group to post the success notification to. Case insensitive.' do
          f.textbox :clazz => 'required', :default => '${YAMMER_SUCCESS_GROUP_NAME}'
        end
      end
@@ -35,7 +35,7 @@
 
        f.entry :title => 'Failure Group Name',
                :field => :failure_group_name,
-               :description => 'The name of the group to post the failure notification to. Case insensitive.' do
+               :description => 'The name or id of the group to post the failure notification to. Case insensitive.' do
          f.textbox :clazz => 'required', :default => '${YAMMER_FAILURE_GROUP_NAME}'
        end
      end
